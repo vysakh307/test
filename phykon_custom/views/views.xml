@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+ <odoo>
+
+ 
+<data noupdate="0">
+<!--
+<record id="view_hr_applicant_inherited_relative" model="ir.ui.view">
+        <field name="name">hr.applicant.form.inherited.relative</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.crm_case_form_view_job" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_relatives_list']" position="replace">   </xpath>
+        </field>
+    </record>
+  
+-->   
+
+
+<!-- Assessment view In Recruitment-->
+<!--     <record id= "hr_job_recruitment_assessment_form_view" model= "ir.ui.view">
+    <field name= "inherit_id" ref="hr.view_hr_job_form"/>
+    <field name= "model">hr.job</field>
+    <field name= "arch" type="xml">
+        <field name= "description" position="after">
+								
+					 <notebook>
+				<page name="assessments" string="Assessments">
+					<field name="assessment_ids" widget="one2many_list">
+						<tree string ="Assessment Name" editable="bottom">
+							<field name = "assessment_name_id"/>
+							<field name = "maximum_mark"/>
+							<field name = "minimum_mark"/>
+						
+							
+						</tree>
+					</field>
+				</page>
+			</notebook>           
+				
+				
+        </field>
+    </field>
+  </record>
+
+-->
+  
+  
+
+
+  
+   <!-- Assessment Tree View -->
+<!--    <record model="ir.ui.view" id="hr_recruitment_assessment_tree">
+        <field name="name">hr.recruitment.assessment.tree</field>
+        <field name="model">hr.assessment</field>
+        <field name="arch" type="xml">
+            <tree string="Assessment">              
+                <field name="name"/>
+				 <field name="category"/>
+				  <field name="measure"/>
+            </tree>
+        </field>
+    </record> 
+	-->
+	
+	 <!-- Assessment Form View -->
+ <!--   <record model="ir.ui.view" id="hr_recruitment_assessment_form">
+        <field name="name">hr.recruitment.assessment.form</field>
+        <field name="model">hr.assessment</field>
+        <field name="arch" type="xml">
+            <form string="Assessment">
+                <group>
+                    <field name="name"/>
+				 <field name="category"/>
+				  <field name="measure"/>
+                </group>
+            </form>
+        </field>
+    </record>  
+   -->
+   
+   
+
+  
+
+   
+   
+  <!--******************************************************************Action*******************************Action************************************************Action*****************-->
+  
+  <!--Action Customer creation("Is a customer make ticked by default") -->
+   <record id="base.action_partner_form" model="ir.actions.act_window">
+            <field name="name">Customers</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{"search_default_customer":1, "default_customer": True}</field>
+            <field name="search_view_id" ref="base.view_res_partner_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a contact in your address book.
+              </p><p>
+                Odoo helps you easily track all activities related to
+                a customer: discussions, history of business opportunities,
+                documents, etc.
+              </p>
+            </field>
+        </record>
+  
+  
+   <!-- Assessment Action -->
+ <!--   <record id="hr_recruitment_assessment_action" model="ir.actions.act_window">
+        <field name="name">Assessment</field>
+        <field name="res_model">hr.assessment</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="hr_recruitment_assessment_tree"/>
+    </record>
+  -->
+
+  <!-- Menus************************************************************************************************************Menu*********************************************************-->
+<!--
+<menuitem 
+            id="hr.menu_hr_root"
+			name="Talents"
+            groups="hr.group_hr_manager,hr.group_hr_user,base.group_user"
+           />
+			
+				<record model="ir.ui.menu" id="hr.menu_hr_root">
+            <field name="name">HR</field>
+        </record>
+			
+			   <menuitem
+            id="hr.menu_hr_main"
+            name="Talents2"
+            parent="hr.menu_hr_root"
+            sequence="0"/> -->
+
+	<!-- Assessment menu**************groups="base.group_no_one*********************-->		
+		<!-- <menuitem
+            id="menu_hr_recruitment_assessment"
+            name="Assessment"
+            parent="hr_recruitment.menu_hr_recruitment_configuration"
+            action="hr_recruitment_assessment_action"
+            sequence="5" groups="hr.group_hr_manager,hr.group_hr_user,base.group_user"/>-->
+	
+	
+
+				
+			   
+  <!-- hiding contacts menu(only visible for administrator)-->
+	<record model="ir.ui.menu" id="contacts.menu_contacts">
+		<field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+	</record>
+  
+  
+   
+ <!-- remove "powered by" from login page --> 
+	<template id="layout_footer_copyright" inherit_id="website.layout_footer_copyright">
+		<xpath expr="//div[@t-ignore='true']" position="replace"></xpath>
+	</template>	
+		
+  </data>
+</odoo>

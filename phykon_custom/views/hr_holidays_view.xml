@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+ 	
+	   <!-- Inherited view of hr.holidays to add group for approve button -->
+
+	<record  id="hr_holidays.edit_holiday_new_inheritedview" model="ir.ui.view">
+        <field name="name">hr_holidays - holiday button approve inherited</field>
+        <field name="model">hr.holidays</field>
+		<field name="inherit_id" ref="hr_holidays.edit_holiday_new" />
+        <field name="arch" type="xml">
+		<xpath expr="//button[@name='action_approve']" position="attributes">
+				<attribute name="groups">phykon_custom.group_leave_approver, hr_holidays.group_hr_holidays_user</attribute>
+        </xpath>
+		
+		<xpath expr="//button[@name='action_refuse']" position="attributes">
+				<attribute name="groups">phykon_custom.group_leave_approver, hr_holidays.group_hr_holidays_user</attribute>
+        </xpath>
+		
+        <xpath expr="//button[@name='action_draft']" position="attributes">
+                <attribute name="groups">phykon_custom.group_leave_approver, hr_holidays.group_hr_holidays_user</attribute>
+        </xpath>
+
+
+        <xpath expr="//sheet/group[1]/group[1]/div[1]" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+
+        <label for="number_of_days_temp" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </label>
+
+        <xpath expr="//sheet/group[1]" position="before">
+            <group>
+                <label for="from_date" string="Duration"/>
+                <div>
+                    <div attrs="{'invisible': [('type', '=', 'add')]}">
+                        <field name="from_date" attrs="{'required':[('type', '=', 'remove')]}" class="oe_inline"/>
+                        <label string=":" class="oe_inline"/>
+                        <field name="from_time"  attrs="{'required':[('type', '=', 'remove')]}" class="oe_inline"
+                            widget="float_time"/> - 
+                    </div>
+                    <div attrs="{'invisible': [('type', '=', 'add')]}">
+                        <field name="to_date" attrs="{'required':[('type', '=', 'remove')]}" class="oe_inline"/>
+                        <label string=":" class="oe_inline"/>
+                        <field name="to_time"  attrs="{'required':[('type', '=', 'remove')]}" class="oe_inline"
+                            widget="float_time"/>
+                    </div>
+                    <div>
+                        <field name="number_of_days_temp" class="oe_inline"/> days
+                    </div>
+                </div>
+            </group>
+        </xpath>
+        </field>
+    </record>
+
+
+    
+	
+			<!-- Leave submenu visibility -->
+			<menuitem
+            id="hr_holidays.menu_hr_holidays_approvals"
+            name="Leaves to Approve"
+            parent="hr_holidays.menu_hr_holidays_root"
+            sequence="3"
+            groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user,phykon_custom.group_leave_approver"/>
+
+			<!-- Leave to approve sub menu visibility -->
+			<menuitem
+            id="hr_holidays.menu_open_department_leave_approve"
+            name="Leaves"
+            parent="hr_holidays.menu_hr_holidays_approvals"
+            groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user,phykon_custom.group_leave_approver"
+            action="hr_holidays.open_department_holidays_approve"
+            sequence="1"/>
+			
+			<!-- add groups for leaves allocation request inside my leaves -->
+			 <menuitem
+            id="hr_holidays.menu_open_allocation_holidays"
+            parent="hr_holidays.menu_hr_holidays_my_leaves"
+			groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user"
+            action="hr_holidays.open_allocation_holidays"
+            sequence="40"/>
+
+			<!-- Reporting Menu -->
+			<menuitem
+            id="hr_holidays.menu_hr_holidays_report"
+            name="Reporting"
+            parent="hr_holidays.menu_hr_holidays_root"
+            sequence="99"
+            groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user,phykon_custom.group_leave_approver"/>
+			
+			<!-- Leave Details under Reporting -->
+			<menuitem
+            id="hr_holidays.menu_open_employee_leave"
+            name="Leave Details"
+            parent="hr_holidays.menu_hr_holidays_report"
+            groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user,phykon_custom.group_leave_approver"
+            action="hr_holidays.open_employee_leaves"
+            sequence="4"/>
+			
+			<!-- Leaves under Reporting -->
+			<menuitem
+            id="hr_holidays.menu_hr_available_holidays_report_tree"
+            name="Leave Details"
+            parent="hr_holidays.menu_hr_holidays_report"
+            groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user,phykon_custom.group_leave_approver"
+            action="hr_holidays.action_hr_available_holidays_report"
+            />
+			
+			<!-- Leave Dashboard Menu -->
+			<menuitem
+            id="hr_holidays.menu_hr_holidays_dashboard"
+            name="Dashboard"
+            parent="hr_holidays.menu_hr_holidays_root"           
+            groups="hr_holidays.group_hr_holidays_manager,hr_holidays.group_hr_holidays_user,phykon_custom.group_leave_approver"/>
+		
+	<!-- auto allocation settings -->
+			<menuitem
+			id="hr_holidays.menu_leave_auto_settings"
+			name="Auto allocation settings"
+			parent="hr_holidays.menu_hr_holidays_configuration"			
+			groups="hr.group_hr_manager,hr.group_hr_user"/>
+
+		
+	
+	
+</odoo>

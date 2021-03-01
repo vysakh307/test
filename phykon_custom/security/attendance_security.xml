@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+		<!-- Approver group in Attendance -->
+	<record id="group_attendance_approver" model="res.groups">
+        <field name="name">Attendance Approver</field>
+    	<field name="category_id" ref="base.module_category_hr_attendance"/>
+        <field name="implied_ids" eval="[(4,ref('hr_attendance.group_hr_attendance'))]"/>
+        <field name="comment">the user will be able to approve document created by employees.</field>
+    </record>
+
+
+		<!-- MIS group in Attendance -->
+	<record id="group_attendance_mis" model="res.groups">
+        <field name="name">Attendance MIS</field>
+    	<field name="category_id" ref="base.module_category_hr_attendance"/>
+        <field name="implied_ids" eval="[(4,ref('hr_attendance.group_hr_attendance'))]"/>
+        <field name="comment">the user will be able to approve document created by employees.</field>
+    </record>
+	
+		<!-- leads group in Attendance -->
+	<record id="group_attendance_leads" model="res.groups">
+        <field name="name">Leads</field>
+    	<field name="category_id" ref="base.module_category_hr_attendance"/>
+        <field name="implied_ids" eval="[(4,ref('base.group_user'))]"/>        
+    </record>
+	
+	
+	<!-- leads rule in Attendance shift generate-->
+	<!-- <record id="shift_leads_rule" model="ir.rule">
+        <field name="name">Leads Shift Assign</field>
+        <field name="model_id" ref="model_hr_shift_generate"/>
+		<field name="domain_force">[('department_id','=', user.department_id)]</field>
+        <field name="groups" eval="[(4,ref('group_attendance_leads'))]"/>
+        <field eval="1" name="perm_read"/>
+		<field eval="1" name="perm_write"/>
+		<field eval="1" name="perm_create"/>
+		<field eval="1" name="perm_unlink"/>		
+	</record> -->
+
+	
+	<!-- Approver rule in Attendance -->
+	<record id="attendance_approver_rule" model="ir.rule">
+        <field name="name">Attendance Approver</field>
+        <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+		<field name="domain_force">['|',('department_id.manager_id.user_id','=', user.id),('department_id.manager_id.parent_id.user_id','=', user.id)]</field>
+        <field name="groups" eval="[(4,ref('group_attendance_approver'))]"/>
+        <field eval="1" name="perm_read"/>
+		<field eval="1" name="perm_write"/>
+		<field eval="0" name="perm_create"/>
+		<field eval="0" name="perm_unlink"/>		
+	</record>
+	
+	
+		<!-- Attendance user self view rule -->
+	<record id="attendance_base_user_rule" model="ir.rule">
+        <field name="name">Attendance User</field>
+        <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+		<field name="domain_force">['|',('employee_id.user_id','=', user.id),'|',('employee_id.department_id.manager_id.user_id','=', user.id),('employee_id.department_id.manager_id.parent_id.user_id','=', user.id)]</field>
+        <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        <field eval="1" name="perm_read"/>
+		<field eval="0" name="perm_write"/>
+		<field eval="0" name="perm_create"/>
+		<field eval="0" name="perm_unlink"/>		
+	</record>
+	
+	<!-- self shift view rule -->
+	<record id="shift_base_user_rule" model="ir.rule">
+        <field name="name">Attendance Shift User</field>
+        <field name="model_id" ref="phykon_custom.model_hr_shift_schedule_complete"/>
+		<field name="domain_force">['|',('employee_id.user_id','=', user.id),'|',('employee_id.department_id.manager_id.user_id','=', user.id),('employee_id.department_id.manager_id.parent_id.user_id','=', user.id)]</field>
+        <field name="groups" eval="[(4,ref('base.group_user'))]"/>
+        <field eval="1" name="perm_read"/>
+		<field eval="0" name="perm_write"/>
+		<field eval="0" name="perm_create"/>
+		<field eval="0" name="perm_unlink"/>		
+	</record>
+	
+	
+		<!-- MIS rule in Attendance -->
+	<record id="attendance_mis_rule" model="ir.rule">
+        <field name="name">Attendance MIS</field>
+        <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+		<field name="domain_force">[(1,'=', 1)]</field>
+        <field name="groups" eval="[(4,ref('group_attendance_mis'))]"/>
+        <field eval="1" name="perm_read"/>
+		<field eval="0" name="perm_write"/>
+		<field eval="0" name="perm_create"/>
+		<field eval="0" name="perm_unlink"/>		
+	</record>
+	
+
+	
+</odoo>

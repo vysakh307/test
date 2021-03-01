@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+  <data>
+  
+  <record id= "calendar_user_template_form_view" model= "ir.ui.view">
+		<field name= "inherit_id" ref="calendar.view_calendar_event_form"/>
+		<field name= "model">calendar.event</field>
+		<field name= "arch" type="xml">
+	 <field name= "location" position="after">		
+		  <field name="url" />  
+	</field>
+			</field>
+	</record>
+  
+  
+  	<record id= "calendar_popup_user_template_form_view" model= "ir.ui.view">
+		<field name= "inherit_id" ref="calendar.view_calendar_event_form_popup"/>
+		<field name= "model">calendar.event</field>
+		<field name= "arch" type="xml">
+		<xpath expr="//field[@name='location']" position="after">
+		<field name="url" widget="url" text_field="location"/> 		  
+		
+		</xpath>
+		
+		</field>
+	</record>
+	
+	
+   </data>
+</odoo>

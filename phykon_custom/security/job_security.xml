@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+    <data>
+        <record id="ops_manager" model="res.groups">
+            <field name="name">Ops Manager</field>
+            <field name="implied_ids" eval="[(4,ref('base.group_user'))]"/>
+        </record>
+        
+	<record id="ops_vp" model="res.groups">
+	    <field name="name">VP Ops</field>
+	    <field name="implied_ids" eval="[(4,ref('base.group_user'))]"/>
+
+	</record>
+    </data>
+</odoo>

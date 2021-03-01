@@ -1,0 +1,48 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+
+access_hr_job_ops_user,hr.job ops,model_hr_job,group_ops_user,1,1,0,0
+access_hr_applicant_ops_user,hr.applicant ops,model_hr_applicant,group_ops_user,1,1,0,0
+access_hr_recruitment_stage_ops_user,hr.recruitment.stage ops,hr_recruitment.model_hr_recruitment_stage,group_ops_user,1,0,0,0
+access_hr_applicant_medical_details_ops_user,hr.applicant.medical.details ops,hr_applicant.model_hr_applicant_medical_details,group_ops_user,1,0,0,0
+access_applicant_previous_occupation_ops_user,applicant.previous.occupation ops,hr_applicant.model_applicant_previous_occupation,group_ops_user,1,0,0,0
+access_applicant_education_ops_user,applicant.education ops,hr_applicant.model_applicant_education,group_ops_user,1,0,0,0
+access_applicant_language_ops_user,applicant.language ops,hr_applicant.model_applicant_language,group_ops_user,1,0,0,0
+access_applicant_previous_travel_ops_user,applicant.previous.travel ops,hr_applicant.model_applicant_previous_travel,group_ops_user,1,0,0,0
+
+access_hr_job_manager_ops_manager,hr.job opsVP,model_hr_job,group_ops_manager,1,1,1,0
+access_hr_applicant_ops_manager,hr.applicant opsVP,model_hr_applicant,group_ops_user,1,0,0,0
+access_hr_recruitment_stage_ops_manager,hr.recruitment.stage opsVP,hr_recruitment.model_hr_recruitment_stage,group_ops_user,1,0,0,0
+access_hr_applicant_medical_details_ops_manager,hr.applicant.medical.details opsVP,hr_applicant.model_hr_applicant_medical_details,group_ops_user,1,0,0,0
+access_applicant_previous_occupation_ops_manager,applicant.previous.occupation opsVP,hr_applicant.model_applicant_previous_occupation,group_ops_user,1,0,0,0
+access_applicant_education_ops_manager,applicant.education opsVP,hr_applicant.model_applicant_education,group_ops_user,1,0,0,0
+access_applicant_language_ops_manager,applicant.language opsVP,hr_applicant.model_applicant_language,group_ops_user,1,0,0,0
+access_applicant_previous_travel_ops_manager,applicant.previous.travel opsVP,hr_applicant.model_applicant_previous_travel,group_ops_user,1,0,0,0
+
+access_survey_ops_manager,survey.survey ops,phykon_custom.model_survey_survey,group_survey_ops_user,1,1,1,0
+access_survey_page_ops_manager,survey.page ops,survey.model_survey_page,group_survey_ops_user,1,1,1,0
+access_survey_question_ops_manager,survey.question ops,survey.model_survey_question,group_survey_ops_user,1,1,1,0
+access_survey_stage_ops_manager,survey.stage ops,survey.model_survey_stage,group_survey_ops_user,1,1,1,0
+access_survey_user_input_ops_manager,survey.user_input ops,survey.model_survey_user_input,group_survey_ops_user,1,1,1,1
+access_survey_label_ops_manager,survey.label ops,survey.model_survey_label,group_survey_ops_user,1,1,1,0
+
+
+access_timesheet_report_manager,analytic.model_account_analytic_line_timesheet manager,analytic.model_account_analytic_line,phykon_custom.group_project_manager,1,1,0,0
+access_account_timesheet_report_manager,analytic.model_account_analytic_line_timesheet_account manager,analytic.model_account_analytic_account,phykon_custom.group_project_manager,1,1,0,0
+
+access_hr_holiday_approver,hr.holidays  approver,hr_holidays.model_hr_holidays,group_leave_approver,1,1,1,0
+access_hr_holiday_approver_status,hr.holidays.status  approver status,hr_holidays.model_hr_holidays_status,group_leave_approver,1,1,0,0
+
+access_resource_calendar_leaves_approve,resource.calendar_leaves approver,resource.model_resource_calendar_leaves,group_leave_approver,1,1,0,0
+
+
+access_res_partnet_calendar_user,res.partner user,bus.model_res_partner,base.group_user,1,1,0,0
+
+access_hr_employee_user,hr.employee user,hr.model_hr_employee,base.group_user,1,0,0,0
+
+access_hr_employee_shift_leads,hr_employee_shift.hr_shift_schedule_leads,model_hr_shift_generate,group_attendance_leads,1,1,1,1
+
+access_hr_employee_shift_hr_employee_shift,hr_employee_shift.hr_shift_schedule,model_hr_shift_schedule,base.group_user,1,0,0,0
+access_hr_employee_complete_shift,hr_employee_shift.hr_shift_schedule_complete,model_hr_shift_schedule_complete,base.group_user,1,0,0,0
+
